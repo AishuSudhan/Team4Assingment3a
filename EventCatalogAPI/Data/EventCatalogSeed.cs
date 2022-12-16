@@ -30,15 +30,15 @@ namespace EventCatalogAPI.Data
         {
             return new List<EventCatalog>
             {
-                new EventCatalog{Name="Country Music",Description="Best Music Party",Day="Friday",Time="7PM",Price=50,PictureUrl="",EventCatagoryId=1,PopularEventId=2},
-                new EventCatalog{Name="Soccer",Description="Come with your Buddies",Day="Saturday",Time="10AM",Price=30,PictureUrl="",EventCatagoryId=4,PopularEventId=3},
-                new EventCatalog{Name="Sandwich And burger",Description="Choose your food as you wish",Day="Wednesday",Time="11AM",Price=16,PictureUrl="",EventCatagoryId=2,PopularEventId=4},
-                new EventCatalog{Name="Photography",Description="We will show you the best techniques",Day="tuesday",Time="10AM",Price=50,PictureUrl="",EventCatagoryId=5,PopularEventId=3},
-                new EventCatalog{Name="Holiday Lights",Description="Walk with you besties",Day="Friday",Time="6PM",Price=15,PictureUrl="",EventCatagoryId=3,PopularEventId=1},
-                new EventCatalog{Name="Book Club",Description="Topics will be displayed on Arrival time",Day="Monday",Time="2PM",Price=0,PictureUrl="",EventCatagoryId=1,PopularEventId=3},
-                new EventCatalog{Name="Cookies and Chocolate",Description="choose your favorite Cookies",Day="All Day",Time="4PM",Price=15,PictureUrl="",EventCatagoryId=1,PopularEventId=4},
-                new EventCatalog{Name="Swimming",Description="Pool is open allDay ",Day="All day",Time="3PM",Price=20,PictureUrl="",EventCatagoryId=1,PopularEventId=5},
-                new EventCatalog{Name="Workout group",Description="Bring Your Workout friend",Day="Friday",Time="7AM",Price=30,PictureUrl="",EventCatagoryId=2,PopularEventId=5},
+                new EventCatalog{Name="Party",Description="Best Music Party",Day="Friday",Time="7PM",Location="seattle",Price=50,PictureUrl="http:/api/Pictures/5",EventCatagoryId=1,PopularEventId=1},
+                new EventCatalog{Name="Soccer Day and Night",Description="Come with your Buddies",Day="Saturday",Time="10AM",Location="Tacoma",Price=30,PictureUrl="http:/api/Pictures/7",EventCatagoryId=4,PopularEventId=4},
+                new EventCatalog{Name="Sandwich And burger",Description="Choose your food as you wish",Day="Wednesday",Time="11AM",Location="Tacoma",Price=16,PictureUrl="http:/api/Pictures/3",EventCatagoryId=5,PopularEventId=6},
+                new EventCatalog{Name="Photography",Description="We will show you the best techniques",Day="tuesday",Time="10AM",Location="Tacoma",Price=50,PictureUrl="http:/api/Pictures/6",EventCatagoryId=2,PopularEventId=2},
+                new EventCatalog{Name="Dancing Lights",Description="Walk with you besties",Day="Friday",Time="6PM",Price=15,PictureUrl="http:/api/Pictures/4",EventCatagoryId=3,PopularEventId=3},
+                new EventCatalog{Name="Book Club",Description="Topics will be displayed on Arrival time",Day="Monday",Time="2PM",Location="Seattle",Price=0,PictureUrl="http:/api/Pictures/1",EventCatagoryId=1,PopularEventId=3},
+                new EventCatalog{Name="Cookies and Chocolate",Description="choose your favorite Cookies",Day="All Day",Time="4PM",Location="Renton",Price=15,PictureUrl="http:/api/Pictures/2",EventCatagoryId=5,PopularEventId=5},
+                new EventCatalog{Name="Swimming",Description="Pool is open allDay ",Day="All day",Time="3PM",Location="Renton",Price=20,PictureUrl="http:/api/Pictures/8",EventCatagoryId=4,PopularEventId=2},
+                new EventCatalog{Name="Workout group",Description="Bring Your Workout friend",Day="Friday",Time="7AM",Location="seattle",Price=30,PictureUrl="http:/api/Pictures/8",EventCatagoryId=2,PopularEventId=4},
 
             };
 
@@ -48,12 +48,12 @@ namespace EventCatalogAPI.Data
         {
             return new List<PopularEvent>
            {
-               new PopularEvent{Location="seattle"},
-               new PopularEvent{Location="Tacoma"},
-               new PopularEvent{Location="Tacoma"},
-               new PopularEvent{Location="Tacoma"},
-               new PopularEvent{Location="Seattle"},
-               new PopularEvent{Location="Renton"}
+               new PopularEvent{EventName="Music"},
+               new PopularEvent{EventName="Relaxing"},
+               new PopularEvent{EventName="Holiday Lights"},
+               new PopularEvent{EventName="Soccer"},
+               new PopularEvent{EventName="Dessert"},
+               new PopularEvent{EventName="Grab and Go"}
            };
         }
 
@@ -61,7 +61,7 @@ namespace EventCatalogAPI.Data
         {
             return new List<EventCatagory>
                 {
-                new EventCatagory{Category="Music"},
+                new EventCatagory{Category="Entertainment"},
                 new EventCatagory{Category="Hobbies"},
                 new EventCatagory{Category="Holiday"},
                 new EventCatagory{Category="Sports"},

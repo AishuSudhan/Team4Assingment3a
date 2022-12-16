@@ -35,13 +35,13 @@ namespace EventCatalogAPI.Data
                 .IsRequired()
                 .ValueGeneratedOnAdd();
 
-               /* e.Property(p => p.EventName)
-                .IsRequired()
-                .HasMaxLength(100);*/
-
-                e.Property(p => p.Location)
+                e.Property(p => p.EventName)
                 .IsRequired()
                 .HasMaxLength(100);
+
+                /*e.Property(p => p.Location)
+                .IsRequired()
+                .HasMaxLength(100);*/
 
 
             });

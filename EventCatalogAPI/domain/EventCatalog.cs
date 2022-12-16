@@ -7,7 +7,7 @@
         public int Id { get; set; }
         public string PictureUrl { get; set; }
         public decimal Price { get; set; }
-        //public string Location { get; set; }
+        public string Location { get; set; }
         public string Day { get; set; }
         public string Time { get; set; }
         public int PopularEventId { get; set; }
