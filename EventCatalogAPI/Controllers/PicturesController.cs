@@ -19,7 +19,7 @@ namespace EventCatalogAPI.Controllers
             var webroot = _env.WebRootPath;
             var path=Path.Combine($"{webroot}/Pictures/", $"pic{id}.jpg");
             var buffer = System.IO.File.ReadAllBytes(path);
-            return File(buffer, "image/jepg");
+            return File(buffer, "image/jpeg");
         }
 
     }
