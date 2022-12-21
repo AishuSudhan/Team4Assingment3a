@@ -71,11 +71,11 @@ namespace EventCatalogAPI.Data
                /* e.Property(c => c.Location)
                 .IsRequired();*/
 
-                e.HasOne(b => b.PopularEventid)
+                e.HasOne(b => b.PopularEvent)
                 .WithMany()
                 .HasForeignKey(e => e.PopularEventId);
 
-                e.HasOne(b => b.EventCatagoryid)
+                e.HasOne(b => b.EventCatagory)
                 .WithMany()
                 .HasForeignKey(t => t.EventCatagoryId);
                 

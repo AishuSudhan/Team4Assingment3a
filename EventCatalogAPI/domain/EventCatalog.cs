@@ -14,8 +14,8 @@
         public int EventCatagoryId { get; set; }
 
 
-        public virtual EventCatagory EventCatagoryid { get; set; }
-        public virtual PopularEvent PopularEventid { get; set; }
+        public virtual EventCatagory EventCatagory { get; set; }
+        public virtual PopularEvent PopularEvent { get; set; }
 
        // public virtual EventCatagory EventCatagorylocation { get; set; }
         //public virtual PopularEvent PopularEventlocation { get; set; }

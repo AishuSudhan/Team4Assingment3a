@@ -3,6 +3,7 @@ using EventCatalogAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventCatalogAPI.Migrations
 {
     [DbContext(typeof(EventCatalogContext))]
-    partial class EventCatalogContextModelSnapshot : ModelSnapshot
+    [Migration("20221221031604_try11")]
+    partial class try11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,21 +114,21 @@ namespace EventCatalogAPI.Migrations
 
             modelBuilder.Entity("EventCatalogAPI.domain.EventCatalog", b =>
                 {
-                    b.HasOne("EventCatalogAPI.domain.EventCatagory", "EventCatagory")
+                    b.HasOne("EventCatalogAPI.domain.EventCatagory", "EventCatagoryid")
                         .WithMany()
                         .HasForeignKey("EventCatagoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EventCatalogAPI.domain.PopularEvent", "PopularEvent")
+                    b.HasOne("EventCatalogAPI.domain.PopularEvent", "PopularEventid")
                         .WithMany()
                         .HasForeignKey("PopularEventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("EventCatagory");
+                    b.Navigation("EventCatagoryid");
 
-                    b.Navigation("PopularEvent");
+                    b.Navigation("PopularEventid");
                 });
 #pragma warning restore 612, 618
         }
