@@ -1,5 +1,6 @@
 ﻿using EventCatalogAPI.Data;
 using EventCatalogAPI.domain;
+using EventCatalogAPI.viewmodels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -32,10 +33,20 @@ namespace EventCatalogAPI.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> Getcatalog([FromQuery]int pagenumber=0,[FromQuery]int pagesize=3)
         {
+            var itemcount = _eventCatalogContext.eventCatalogs.LongCountAsync();
+
             var item = await _eventCatalogContext.eventCatalogs.OrderBy(i => i.Name)
                 .Skip(pagenumber * pagesize).Take(pagesize).ToListAsync();
             item = Changepictureurl(item);
-            return Ok(item);
+
+            var items = new PaginatedViewModel
+            {
+                Pagenumber = pagenumber,
+                PageSize = pagesize,
+                Data = item,
+                Count = itemcount.Result
+            };
+            return Ok(items);
 
         }
 
