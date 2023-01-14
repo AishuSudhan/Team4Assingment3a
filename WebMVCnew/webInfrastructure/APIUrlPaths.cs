@@ -1,21 +1,43 @@
 ﻿namespace WebMVCnew.webInfrastructure
 {
-    public static class APIUrlPaths
+    public class APIUrlPaths
     {
-        public static class catalogevents
+        public static class Paginatedclass
         {
-            public static string geteventscategories(string baseUrl)
+            public static string Geteventscategories(string baseUrl)
             {
                 return $"{baseUrl}/getcategories";
             }
-            public static string getpopularevents(string baseUrl)
+            public static string Getpopularevents(string baseUrl)
             {
                 return $"{baseUrl}/getpopularevents";
             }
-            public static string getcatalog(string baseUrl,int pagenumber,int pagesize)
+            public static string Getcatalog(string baseUrl, int pagenumber, int pagesize, int? popularevents, int? categories)
             {
-                return $"{baseUrl}/getcatalog?Pagenumber={pagenumber}&Pagesize={pagesize}";
+                var PreUri = string.Empty;
+                var filterQs = string.Empty;
+                if (popularevents.HasValue)
+                {
+                    filterQs = $"populareventid={popularevents.Value}";
+                }
+                if (categories.HasValue)
+                {
+                    filterQs = (filterQs == string.Empty) ? $"eventcategoryid={categories.Value}" :
+                         $"{filterQs}&eventcategoryid={categories.Value}";
+                }
+                if (string.IsNullOrEmpty(filterQs))
+                {
+                    PreUri = $"{baseUrl}/getcatalog?pageIndex={pagenumber}&pageSize={pagesize}";
+                }
+                else
+                {
+                    PreUri = $"{baseUrl}/getcatalog/filter?pageIndex={pagenumber}&pageSize={pagesize}&{filterQs}";
+                }
+
+                return PreUri;
+
             }
         }
     }
-}
+}   
+

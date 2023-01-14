@@ -5,7 +5,7 @@ namespace WebMVCnew.Services
 {
     public interface IEventCatalog
     {
-        Task<eventcatalogClass> GetCatalogAsync(int pagenumber, int pagesize);
+        Task<Paginatedclass> GetCatalogAsync(int pagenumber, int pagesize,int? popularevents,int? categories);
         Task<IEnumerable<SelectListItem>> PopulareventsAsync();
         Task<IEnumerable<SelectListItem>> GetCategoriesAsync();
     }

@@ -3,6 +3,7 @@ using WebMVCnew.Services;
 using WebMVCnew.ViewModels;
 using WebMVCnew.webModels;
 
+
 namespace WebMVCnew.controller
 {
     public class EventCatalogController : Controller
@@ -12,25 +13,28 @@ namespace WebMVCnew.controller
         {
             _evtcatalog = evtCatalog;
         }
-        public async Task<IActionResult> Index(int? pagenumber)
+        public async Task<IActionResult> Index(int? pagenumber,int? popularEventsFilterApplied,int? categoriesFilterApplied)
         {
-            var itemsonpage = 10;
-           var eventcatalog= await _evtcatalog.GetCatalogAsync(pagenumber ?? 0, itemsonpage);
-            var catalogviewmodel = new EventCatalogviewmodels
+             var itemsonpage = 10;
+           var eventcatalog= await _evtcatalog.GetCatalogAsync(pagenumber ?? 0, itemsonpage, popularEventsFilterApplied, categoriesFilterApplied);
+           
+             var catalogviewmodel = new EventCatalogviewmodels
             {
-                categories = await _evtcatalog.GetCategoriesAsync(),
-                popularevents = await _evtcatalog.PopulareventsAsync(),
-                eventcatalogs = eventcatalog.Data,
+                Categories = await _evtcatalog.GetCategoriesAsync(),
+                Popularevents = await _evtcatalog.PopulareventsAsync(),
+                Eventcatalogs = eventcatalog.Data,
                 paginationinfo = new Paginationinfo
                 {
                     ActualPage = eventcatalog.Pagenumber,
                     ItemsPerPage = eventcatalog.PageSize,
                     TotalItems = eventcatalog.Count,
                     TotalPages = (int)Math.Ceiling((decimal)eventcatalog.Count / itemsonpage)
-                }
+                },
+                 CategoriesFilterApplied = categoriesFilterApplied,
+                 PopularEventsFilterApplied = popularEventsFilterApplied
 
             };
-            return View();
+            return View(catalogviewmodel);
         }
     }
 }

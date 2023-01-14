@@ -8,19 +8,19 @@ namespace EventCatalogAPI.Data
         public static void Seed(EventCatalogContext context)
         {
             context.Database.Migrate();
-            if(!context.eventCatagories.Any())
+            if(!context.EventCatagories.Any())
             {
-                context.eventCatagories.AddRange(getcategories());
+                context.EventCatagories.AddRange(getcategories());
                 context.SaveChanges();
             }
-            if(!context.popularEvents.Any())
+            if(!context.PopularEvents.Any())
             {
-                context.popularEvents.AddRange(getpopularevents());
+                context.PopularEvents.AddRange(getpopularevents());
                 context.SaveChanges();
             }
-            if(!context.eventCatalogs.Any())
+            if(!context.EventCatalogs.Any())
             {
-                context.eventCatalogs.AddRange(getcatalogs());
+                context.EventCatalogs.AddRange(getcatalogs());
                 context.SaveChanges();
             }
                 

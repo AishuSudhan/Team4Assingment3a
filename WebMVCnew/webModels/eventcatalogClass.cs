@@ -1,6 +1,6 @@
 ﻿namespace WebMVCnew.webModels
 {
-    public class eventcatalogClass
+    public class EventcatalogClass
     {
         public string Name { get; set; }
         public string Description { get; set; }

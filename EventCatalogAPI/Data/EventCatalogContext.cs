@@ -9,9 +9,9 @@ namespace EventCatalogAPI.Data
         {
 
         }
-        public DbSet<EventCatagory> eventCatagories { get; set; }
-        public DbSet<EventCatalog> eventCatalogs { get; set; }
-        public DbSet<PopularEvent> popularEvents { get; set; }
+        public DbSet<EventCatagory> EventCatagories { get; set; }
+        public DbSet<EventCatalog> EventCatalogs { get; set; }
+        public DbSet<PopularEvent> PopularEvents { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EventCatagory>(e =>

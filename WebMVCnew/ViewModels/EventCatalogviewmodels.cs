@@ -5,9 +5,11 @@ namespace WebMVCnew.ViewModels
 {
     public class EventCatalogviewmodels
     {
-        public IEnumerable<SelectListItem> categories { get; set; }
-        public IEnumerable<SelectListItem> popularevents { get; set; }
-        public IEnumerable<eventcatalogClass> eventcatalogs { get; set; }
-        public Paginatedclass paginatedclass { get; set; }
+        public IEnumerable<SelectListItem> Categories { get; set; }
+        public IEnumerable<SelectListItem> Popularevents { get; set; }
+        public IEnumerable<EventcatalogClass> Eventcatalogs { get; set; }
+        public Paginationinfo paginationinfo { get; set; }
+        public int? CategoriesFilterApplied { get; set; }
+        public int? PopularEventsFilterApplied { get; set; }
     }
 }

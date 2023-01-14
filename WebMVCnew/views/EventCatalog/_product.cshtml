@@ -1,0 +1,24 @@
+﻿@model WebMVCnew.webModels.EventcatalogClass
+
+
+
+
+<form asp-controller="Cart" asp-action="AddToCart">
+    <img class="esh-catalog-thumbnail" src="@Model.PictureUrl" height=300 width=300/>
+    <input class="esh-catalog-button" type="submit" value="[ ADD TO CART ]" />
+    <div class="esh-catalog-name">
+        <span>@Model.Name</span>
+    </div>
+    <div class="esh-catalog-price">
+        <span>@Model.Price.ToString("N2")</span>
+    </div>
+    <input type="hidden" asp-for="@Model.EventCatagory" name="category" />
+    <input type="hidden" asp-for="@Model.EventCatagoryId" name="categoryId" />
+    <input type="hidden" asp-for="@Model.PopularEvent" name="popularevent" />
+    <input type="hidden" asp-for="@Model.PopularEventId" name="populareventId" />
+    <input type="hidden" asp-for="@Model.Description" name="description" />
+    <input type="hidden" asp-for="@Model.Id" name="id" />
+    <input type="hidden" asp-for="@Model.Name" name="name" />
+    <input type="hidden" asp-for="@Model.PictureUrl" name="pictureUrl" />
+    <input type="hidden" asp-for="@Model.Price" name="price" />
+</form>
