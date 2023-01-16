@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebMVCnew.Services;
 using WebMVCnew.ViewModels;
-using WebMVCnew.webModels;
+//using WebMVCnew.webModels;
 
 
 namespace WebMVCnew.controller
@@ -13,17 +13,17 @@ namespace WebMVCnew.controller
         {
             _evtcatalog = evtCatalog;
         }
-        public async Task<IActionResult> Index(int? pagenumber,int? popularEventsFilterApplied,int? categoriesFilterApplied)
+        public async Task<IActionResult> Index(int? pageNumber,int? popularEventsFilterApplied,int? categoriesFilterApplied)
         {
              var itemsonpage = 10;
-           var eventcatalog= await _evtcatalog.GetCatalogAsync(pagenumber ?? 0, itemsonpage, popularEventsFilterApplied, categoriesFilterApplied);
+           var eventcatalog= await _evtcatalog.GetCatalogAsync(pageNumber ?? 0, itemsonpage, popularEventsFilterApplied, categoriesFilterApplied);
            
              var catalogviewmodel = new EventCatalogviewmodels
             {
                 Categories = await _evtcatalog.GetCategoriesAsync(),
                 Popularevents = await _evtcatalog.PopulareventsAsync(),
                 Eventcatalogs = eventcatalog.Data,
-                paginationinfo = new Paginationinfo
+                PaginationInfo = new Paginationinfo
                 {
                     ActualPage = eventcatalog.Pagenumber,
                     ItemsPerPage = eventcatalog.PageSize,

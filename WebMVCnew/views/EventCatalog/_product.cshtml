@@ -4,7 +4,7 @@
 
 
 <form asp-controller="Cart" asp-action="AddToCart">
-    <img class="esh-catalog-thumbnail" src="@Model.PictureUrl" height=300 width=300/>
+    <img class="esh-catalog-thumbnail" src="@Model.PictureUrl" height="400" width="400"/>
     <input class="esh-catalog-button" type="submit" value="[ ADD TO CART ]" />
     <div class="esh-catalog-name">
         <span>@Model.Name</span>
@@ -13,7 +13,7 @@
         <span>@Model.Price.ToString("N2")</span>
     </div>
     <input type="hidden" asp-for="@Model.EventCatagory" name="category" />
-    <input type="hidden" asp-for="@Model.EventCatagoryId" name="categoryId" />
+    <input type="hidden" asp-for="@Model.EventCatagoryId" name="eventcategoryId" />
     <input type="hidden" asp-for="@Model.PopularEvent" name="popularevent" />
     <input type="hidden" asp-for="@Model.PopularEventId" name="populareventId" />
     <input type="hidden" asp-for="@Model.Description" name="description" />

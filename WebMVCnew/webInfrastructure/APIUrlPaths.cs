@@ -6,7 +6,7 @@
         {
             public static string Geteventscategories(string baseUrl)
             {
-                return $"{baseUrl}/getcategories";
+                return $"{baseUrl}/geteventscategories";
             }
             public static string Getpopularevents(string baseUrl)
             {

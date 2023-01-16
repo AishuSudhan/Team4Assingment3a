@@ -10,23 +10,23 @@ namespace EventCatalogAPI.Data
             context.Database.Migrate();
             if(!context.EventCatagories.Any())
             {
-                context.EventCatagories.AddRange(getcategories());
+                context.EventCatagories.AddRange(Getcategories());
                 context.SaveChanges();
             }
             if(!context.PopularEvents.Any())
             {
-                context.PopularEvents.AddRange(getpopularevents());
+                context.PopularEvents.AddRange(Getpopularevents());
                 context.SaveChanges();
             }
             if(!context.EventCatalogs.Any())
             {
-                context.EventCatalogs.AddRange(getcatalogs());
+                context.EventCatalogs.AddRange(Getcatalogs());
                 context.SaveChanges();
             }
                 
         }
 
-        private static IEnumerable<EventCatalog> getcatalogs()
+        private static IEnumerable<EventCatalog> Getcatalogs()
         {
             return new List<EventCatalog>
             {
@@ -44,7 +44,7 @@ namespace EventCatalogAPI.Data
 
         }
 
-        private static IEnumerable<PopularEvent> getpopularevents()
+        private static IEnumerable<PopularEvent> Getpopularevents()
         {
             return new List<PopularEvent>
            {
@@ -57,7 +57,7 @@ namespace EventCatalogAPI.Data
            };
         }
 
-        private static IEnumerable<EventCatagory> getcategories()
+        private static IEnumerable<EventCatagory> Getcategories()
         {
             return new List<EventCatagory>
                 {

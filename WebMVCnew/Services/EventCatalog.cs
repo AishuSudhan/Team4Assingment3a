@@ -52,9 +52,9 @@ namespace WebMVCnew.Services
 
         public async Task<IEnumerable<SelectListItem>> PopulareventsAsync()
         {
-            var customurl = APIUrlPaths.Paginatedclass.Getpopularevents(_baseurl);
-            var datastring = await _httpclient.GetAsync(customurl);
-            var events = new List<SelectListItem>()
+            var popularurl = APIUrlPaths.Paginatedclass.Getpopularevents(_baseurl);
+            var datastring = await _httpclient.GetAsync(popularurl);
+            var popevents = new List<SelectListItem>()
             {
                 new SelectListItem
                 {
@@ -66,7 +66,7 @@ namespace WebMVCnew.Services
             var popular = JArray.Parse(datastring);
             foreach (var evt in popular)
             {
-                events.Add(new SelectListItem
+                popevents.Add(new SelectListItem
                 {
                     Value = evt.Value<string>("id"),
                     Text = evt.Value<string>("eventname")
@@ -74,7 +74,7 @@ namespace WebMVCnew.Services
                 });
 
             }
-            return events;
+            return popevents;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace WebMVCnew.ViewModels
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<SelectListItem> Popularevents { get; set; }
         public IEnumerable<EventcatalogClass> Eventcatalogs { get; set; }
-        public Paginationinfo paginationinfo { get; set; }
+        public Paginationinfo PaginationInfo { get; set; }
         public int? CategoriesFilterApplied { get; set; }
         public int? PopularEventsFilterApplied { get; set; }
     }

@@ -19,7 +19,7 @@ namespace EventCatalogAPI.Controllers
             _config = config;
         }
         [HttpGet("[action]")]
-        public async Task<IActionResult> Getcategories()
+        public async Task<IActionResult> Geteventscategories()
         {
            var category=await _eventCatalogContext.EventCatagories.ToListAsync();
             return Ok(category);

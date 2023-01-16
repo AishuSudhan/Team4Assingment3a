@@ -8,7 +8,7 @@
                    id="Previous"
                    asp-controller="EventCatalog"
                    asp-action="Index"
-                   asp-route-pagenumber="@(Model.ActualPage -1)"
+                   asp-route-pageNumber="@(Model.ActualPage -1)"
                    aria-label="Previous">
                     Previous
                 </a>
@@ -21,7 +21,7 @@
                    id="Next"
                    asp-controller="EventCatalog"
                    asp-action="Index"
-                   asp-route-pagenumber="@(Model.ActualPage + 1)"
+                   asp-route-pageNumber="@(Model.ActualPage + 1)"
                    aria-label="Next">
                     Next
                 </a>

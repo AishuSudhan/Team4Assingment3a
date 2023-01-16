@@ -28,7 +28,7 @@ services:
       context: .\WebMVCnew
       dockerfile: Dockerfile
     environment: 
-      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_ENVIRONMENT: Development
       EventCatalogUrl: http://eventcatalog
     ports:
       - "7080:80"
