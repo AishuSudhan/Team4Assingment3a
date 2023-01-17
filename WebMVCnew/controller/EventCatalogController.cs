@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebMVCnew.Services;
 using WebMVCnew.ViewModels;
 //using WebMVCnew.webModels;
@@ -35,6 +36,11 @@ namespace WebMVCnew.controller
 
             };
             return View(catalogviewmodel);
+        }
+        [Authorize]
+        public IActionResult About()
+        {
+            return View();
         }
     }
 }

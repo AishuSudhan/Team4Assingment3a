@@ -22,6 +22,27 @@ services:
     depends_on: 
       - mssqlserver
  
+  eventstokenserver:
+    image: events/tokenapi
+    build:
+      context: .\TokenServiceAPI
+      dockerfile: Dockerfile
+    environment:
+      ConnectionString: "Data Source=tokensqlserver;Initial Catalog=TokenServiceDb;User ID=sa;Password=Eventcatalog(2$);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
+      MvcClient: http://localhost:7080
+    ports:
+      - "5020:80"
+    container_name: eventstokenapi
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - tokensqlserver
+
+
+
+
+
   webmvcnew:
     image: events/webmvcnew
     build:
@@ -30,6 +51,8 @@ services:
     environment: 
       ASPNETCORE_ENVIRONMENT: Development
       EventCatalogUrl: http://eventcatalog
+      IdentityUrl: http://192.168.1.15:5020
+      CallBackUrl: http://localhost:7080
     ports:
       - "7080:80"
     container_name: eventsticketsshop
@@ -37,6 +60,7 @@ services:
       - frontend
     depends_on:
       - eventcatalog
+      - eventstokenserver
      
   
 
@@ -51,3 +75,15 @@ services:
      container_name: eventssqlserver
      networks:
        - backend
+
+  tokensqlserver:
+    image: "mcr.microsoft.com/mssql/server:latest"
+    environment:
+       ACCEPT_EULA: Y
+       MSSQL_SA_PASSWORD: Eventcatalog(2$)
+       SA_PASSWORD: Eventcatalog(2$)
+    ports:
+      - "5010:1433"
+    container_name: eventstokensqlserver
+    networks:
+      - backend
