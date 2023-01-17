@@ -64,12 +64,12 @@ namespace WebMVCnew.Services
                 }
             };
             var popular = JArray.Parse(datastring);
-            foreach (var evt in popular)
+            foreach (var evnt in popular)
             {
                 popevents.Add(new SelectListItem
                 {
-                    Value = evt.Value<string>("id"),
-                    Text = evt.Value<string>("eventname")
+                    Value = evnt.Value<string>("id"),
+                    Text = evnt.Value<string>("eventname")
 
                 });
 
