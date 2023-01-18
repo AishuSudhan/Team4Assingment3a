@@ -10,6 +10,7 @@ namespace TokenServiceAPI
 {
     public static class Config
     {
+		
 		public static IEnumerable<ApiScope> Apis()
 		{
 			return new List<ApiScope>
@@ -28,6 +29,7 @@ namespace TokenServiceAPI
 		}
 
 		public static Dictionary<string, string> GetUrls(IConfiguration configuration)
+			//this method is to get the URLs from the configuration file.
 		{
 			Dictionary<string, string> urls = new Dictionary<string, string>();
 
@@ -41,7 +43,7 @@ namespace TokenServiceAPI
 
 		public static IEnumerable<Client> GetClients(Dictionary<string, string> clientUrls)
 		{
-			return new List<Client>
+			  return new List<Client>
 				{
 	                //implicit flow grant type
 	                new Client
@@ -101,7 +103,7 @@ namespace TokenServiceAPI
 							"order"
 						 }
 					}
-				};
+			  };
 
 		}
 
