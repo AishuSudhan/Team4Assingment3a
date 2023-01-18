@@ -7,14 +7,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["CartAPI/CartAPI.csproj", "CartAPI/"]
-RUN dotnet restore "CartAPI/CartAPI.csproj"
 COPY . .
-WORKDIR "/src/CartAPI"
+RUN dotnet restore "CartAPI.csproj"
+
+
 RUN dotnet build "CartAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "CartAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "CartAPI.csproj" -c Release -o /app/publish 
+
+RUN sed -i 's/DEFAULT@SECLEVEL=2/DEFAULT@SECLEVEL=1/g' /etc/ssl/openssl.cnf
+
 
 FROM base AS final
 WORKDIR /app

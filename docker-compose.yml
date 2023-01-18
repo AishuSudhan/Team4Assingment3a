@@ -39,10 +39,26 @@ services:
     depends_on:
       - tokensqlserver
 
+  cart:
+    image: events/cartapi
+    build:
+      context: .\CartAPI
+      dockerfile: Dockerfile
+    environment:
+      IdentityUrl: http://192.168.1.15:5020
+      ConnectionString: basket.data
+    ports:
+      - "7010:80"
+    container_name: eventscartapi
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - tokenserver
+      - basket.data
 
 
-
-
+     
   webmvcnew:
     image: events/webmvcnew
     build:
@@ -85,5 +101,14 @@ services:
     ports:
       - "5010:1433"
     container_name: eventstokensqlserver
+    networks:
+      - backend
+
+
+  basket.data:
+    image: redis
+    ports:
+      - "7020:6379"
+    container_name: basketdata
     networks:
       - backend

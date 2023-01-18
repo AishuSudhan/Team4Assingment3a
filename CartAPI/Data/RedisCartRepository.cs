@@ -7,16 +7,15 @@ namespace CartAPI.Data
 {
     public class RedisCartRepository : ICartRepository
     {
-        private readonly ConnectionMultiplexer _redis;
+        
         private readonly IDatabase _database;
         public RedisCartRepository(ConnectionMultiplexer redis) 
         { 
-            _redis = redis;
             _database = redis.GetDatabase();
         }
-        public Task<bool> DeleteCartAsync(string cartId)
+        public async Task<bool> DeleteCartAsync(string cartId)
         {
-            throw new NotImplementedException();
+            return await _database.KeyDeleteAsync(cartId);
         }
 
         public async Task<Cart> GetCartAsync(string cartId)
@@ -26,12 +25,16 @@ namespace CartAPI.Data
             {
                 return null; 
             }
-           JsonConvert
+           return JsonConvert.DeserializeObject<Cart>(data);
         }
 
-        public Task<Cart> UpdateCartAsync(Cart basket)
+        public async Task<Cart> UpdateCartAsync(Cart basket)
         {
-            throw new NotImplementedException();
+            var created =  await _database.StringSetAsync(basket.BuyerId, JsonConvert
+                .SerializeObject(basket));
+            if (!created)
+                return null;
+            return await GetCartAsync(basket.BuyerId);
         }
     }
 
