@@ -70,7 +70,7 @@ namespace WebMVCnew.Services
                 popevents.Add(new SelectListItem
                 {
                     Value = evnt.Value<string>("id"),
-                    Text = evnt.Value<string>("eventname")
+                    Text = evnt.Value<string>("eventName")
 
                 });
 

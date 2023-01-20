@@ -18,7 +18,7 @@
                 var filterQs = string.Empty;
                 if (popularevents.HasValue)
                 {
-                    filterQs = $"populareventid={popularevents.Value}";
+                    filterQs = $"populareventsid={popularevents.Value}";
                 }
                 if (categories.HasValue)
                 {
