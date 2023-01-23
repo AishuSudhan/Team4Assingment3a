@@ -1,8 +1,10 @@
-﻿@using WebMvc.Models
-@using WebMvc.Services
-@using WebMvc.ViewModels
+﻿@using WebMVCnew.webModels
+@using WebMVCnew.Services
+@using WebMVCnew.ViewModels
 
-@*@model  WebMvc.Models.CartModels.Cart*@
+
+
+@*@model  WebMVCnew.webModels.CartModels.Cart*@
 @inject IIdentityService<ApplicationUser> identityService 
 
 @{
@@ -12,7 +14,7 @@
 <form method="post" id="cartForm">
     <div class="esh-basket">
         @Html.Partial("_Header", new List<Header>() {
-            new Header() { Controller = "Catalog", Text = "Back to catalog" } })
+            new Header() { Controller = "Catalog", Text = "Back to event catalog" } })
 
         @await Component.InvokeAsync("CartList", new { user = identityService.Get(User) })
     </div>
