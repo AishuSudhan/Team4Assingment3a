@@ -111,6 +111,6 @@ services:
     image: redis
     ports:
       - "7020:6379"
-    container_name: basketdata
+    container_name: baskettdata
     networks:
       - backend
