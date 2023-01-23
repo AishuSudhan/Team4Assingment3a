@@ -48,7 +48,7 @@ services:
       IdentityUrl: http://192.168.1.15:5020
       ConnectionString: basket.data
     ports:
-      - "7020:80"
+      - "7022:80"
     container_name: eventscartapi
     networks:
       - frontend
@@ -110,7 +110,7 @@ services:
   basket.data:
     image: redis
     ports:
-      - "7020:6379"
+      - "7021:6379"
     container_name: baskettdata
     networks:
       - backend
