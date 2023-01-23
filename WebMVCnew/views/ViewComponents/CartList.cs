@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Polly.CircuitBreaker;
-using WebMvc.Models;
-using WebMvc.Models.CartModels;
-using WebMvc.Services;
+using WebMVCnew.webModels;
+using WebMVCnew.webModels.CartModels;
+using WebMVCnew.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace WebMvc.ViewComponents
         {
 
 
-            var vm = new Models.CartModels.Cart();
+            var vm = new WebMVCnew.webModels.CartModels.Cart();
             try
             {
                 vm = await _cartSvc.GetCart(user);

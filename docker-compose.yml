@@ -48,13 +48,13 @@ services:
       IdentityUrl: http://192.168.1.15:5020
       ConnectionString: basket.data
     ports:
-      - "7010:80"
+      - "7020:80"
     container_name: eventscartapi
     networks:
       - frontend
       - backend
     depends_on:
-      - tokenserver
+      - eventstokenserver
       - basket.data
 
 
@@ -69,6 +69,7 @@ services:
       EventCatalogUrl: http://eventcatalog
       IdentityUrl: http://192.168.1.15:5020
       CallBackUrl: http://localhost:7080
+      CartUrl: http://cart
     ports:
       - "7080:80"
     container_name: eventsticketsshop
@@ -77,6 +78,7 @@ services:
     depends_on:
       - eventcatalog
       - eventstokenserver
+      - cart
      
   
 

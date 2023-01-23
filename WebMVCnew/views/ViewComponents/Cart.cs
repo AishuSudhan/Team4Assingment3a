@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Polly.CircuitBreaker;
-using WebMvc.Models;
+using WebMVCnew.webModels;
 
-using WebMvc.Services;
-using WebMvc.ViewModels;
+using WebMVCnew.Services;
+using WebMVCnew.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

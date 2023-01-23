@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using WebMvc.Services
-@using WebMvc.Models
+@using WebMVCnew.Services
+@using WebMVCnew.webModels
 
 @inject IIdentityService<ApplicationUser> UserManager
 @if (User.FindFirst(x => x.Type == "preferred_username") != null)
