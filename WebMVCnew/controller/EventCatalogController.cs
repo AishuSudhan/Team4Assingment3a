@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebMVCnew.Services;
 using WebMVCnew.ViewModels;
-//using WebMVCnew.webModels;
 
 
 namespace WebMVCnew.controller
@@ -17,7 +16,7 @@ namespace WebMVCnew.controller
         public async Task<IActionResult> Index(int? pageNumber,int? popularEventsFilterApplied,int? categoriesFilterApplied)
         {
              var itemsonpage = 9;
-           var eventcatalog= await _evtcatalog.GetCatalogAsync(pageNumber ?? 0, itemsonpage, popularEventsFilterApplied, categoriesFilterApplied);
+             var eventcatalog= await _evtcatalog.GetCatalogAsync(pageNumber ?? 0, itemsonpage, popularEventsFilterApplied, categoriesFilterApplied);
            
              var catalogviewmodel = new EventCatalogviewmodels
             {

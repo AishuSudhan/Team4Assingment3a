@@ -45,7 +45,7 @@ services:
       context: .\CartAPI
       dockerfile: Dockerfile
     environment:
-      IdentityUrl: http://192.168.1.15:5020
+      IdentityUrl: http://172.20.11.183
       ConnectionString: basket.data
     ports:
       - "7022:80"
@@ -67,7 +67,7 @@ services:
     environment: 
       ASPNETCORE_ENVIRONMENT: Development
       EventCatalogUrl: http://eventcatalog
-      IdentityUrl: http://192.168.1.15:5020
+      IdentityUrl: http://172.20.11.183
       CallBackUrl: http://localhost:7080
       CartUrl: http://cart
     ports:
