@@ -1,0 +1,19 @@
+﻿@using WebMVCnew.webModels
+@using WebMVCnew.Services
+@using WebMVCnew.ViewModels
+
+
+@inject IIdentityService<ApplicationUser> identityService 
+
+@{
+    ViewData["Title"] = "My Cart";
+}
+
+<form method="post" id="cartForm">
+    <div class="esh-basket">
+        @Html.Partial("_Header", new List<Header>() {
+            new Header() { Controller = "EventCatalog", Text = "Back to Eventcatalog" } })
+
+        @await Component.InvokeAsync("EventCartList", new { user = identityService.Get(User) })
+    </div>
+</form>

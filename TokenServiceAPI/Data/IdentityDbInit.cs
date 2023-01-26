@@ -15,7 +15,7 @@ namespace TokenServiceAPI.Data
             ApplicationDbContext context,
             UserManager<IdentityUser> userManager)
         {
-            _userManager = userManager;
+            _userManager = userManager; 
             //create database schema if none exists
             context.Database.Migrate();
             //If there is already an Administrator role, abort

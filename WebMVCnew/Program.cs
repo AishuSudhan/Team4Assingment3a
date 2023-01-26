@@ -15,6 +15,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IHttpClient, HttpClientClass>();
 builder.Services.AddTransient<IEventCatalog, EventCatalog>();
 builder.Services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
+builder.Services.AddTransient<ICartService, CartService>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var identityUrl = configuration["IdentityUrl"];
 var callBackUrl = configuration["CallBackUrl"];
