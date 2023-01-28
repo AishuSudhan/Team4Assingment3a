@@ -16,7 +16,7 @@ namespace WebMVCnew.controller
         }
         public async Task<IActionResult> Index(int? pageNumber,int? popularEventsFilterApplied,int? categoriesFilterApplied)
         {
-             var itemsonpage = 5;
+             var itemsonpage = 9;
            var eventcatalog= await _evtcatalog.GetCatalogAsync(pageNumber ?? 0, itemsonpage, popularEventsFilterApplied, categoriesFilterApplied);
            
              var catalogviewmodel = new EventCatalogviewmodels
