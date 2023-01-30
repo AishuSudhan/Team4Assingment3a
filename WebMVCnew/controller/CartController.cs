@@ -79,13 +79,13 @@ namespace WebMVCnew.controller
                 HandleBrokenCircuitException();
             }
 
-            return RedirectToAction("Index", "Catalog");
+            return RedirectToAction("Index", "EventCatalog");
 
         }
 
         private void HandleBrokenCircuitException()
         {
-            throw new NotImplementedException();
+            TempData["BasketInoperativeMsg"] = "cart Service is inoperative, please try later on. (Business Msg Due to Circuit-Breaker)";
         }
     }
     }

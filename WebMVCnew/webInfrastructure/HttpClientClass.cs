@@ -23,7 +23,7 @@ namespace WebMVCnew.webInfrastructure
             return await _httpclient.SendAsync(request);
         }
 
-        public async Task<string> GetAsync(string Uri, 
+        public async Task<string> GetStringAsync(string Uri, 
             string authorizationtoken = null, string authorizationmethod = "bearer")
         {
             var request = new HttpRequestMessage(HttpMethod.Get, Uri);

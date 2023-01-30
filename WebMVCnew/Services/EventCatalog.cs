@@ -19,14 +19,14 @@ namespace WebMVCnew.Services
         public async Task<Paginatedclass> GetCatalogAsync(int pagenumber, int pagesize,int? popularevents,int? categories)
         {
             var customurl = APIUrlPaths.Paginatedclass.Getcatalog(_baseurl, pagenumber, pagesize, popularevents, categories);
-            var datastring = await _httpclient.GetAsync(customurl);
+            var datastring = await _httpclient.GetStringAsync(customurl);
            return JsonConvert.DeserializeObject<Paginatedclass>(datastring);
         }
 
         public async Task<IEnumerable<SelectListItem>> GetCategoriesAsync()
         {
             var customurl = APIUrlPaths.Paginatedclass.Geteventscategories(_baseurl);
-            var datastring = await _httpclient.GetAsync(customurl);
+            var datastring = await _httpclient.GetStringAsync(customurl);
             var events = new List<SelectListItem>()
             {
                 new SelectListItem
@@ -53,7 +53,7 @@ namespace WebMVCnew.Services
         public async Task<IEnumerable<SelectListItem>> PopulareventsAsync()
         {
             var popularurl = APIUrlPaths.Paginatedclass.Getpopularevents(_baseurl);
-            var popdatastring = await _httpclient.GetAsync(popularurl);
+            var popdatastring = await _httpclient.GetStringAsync(popularurl);
             var popevents = new List<SelectListItem>()
             {
                 new SelectListItem
