@@ -17,6 +17,7 @@ builder.Services.AddTransient<IEventCatalog, EventCatalog>();
 builder.Services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
 builder.Services.AddTransient<ICartService, CartService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddTransient<IEventOrderService, EventOrderService>();
 
 var identityUrl = configuration["IdentityUrl"];
 var callBackUrl = configuration["CallBackUrl"];

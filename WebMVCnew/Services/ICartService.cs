@@ -1,5 +1,6 @@
 ﻿using WebMVCnew.webModels;
 using WebMVCnew.webModels.CartModels;
+using  WebMVCnew.webModels.EventOrderModels;
 
 namespace WebMVCnew.Services
 {
@@ -9,7 +10,7 @@ namespace WebMVCnew.Services
         Task AddItemToCart(ApplicationUser user, CartItem product);
         Task<Cart> UpdateCart(Cart Cart);
         Task<Cart> SetQuantities(ApplicationUser user, Dictionary<string, int> quantities);
-        
+        EventOrder MapCartToOrder(Cart Cart);
         Task ClearCart(ApplicationUser user);
     }
 }

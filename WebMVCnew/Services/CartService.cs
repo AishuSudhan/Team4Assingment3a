@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 using WebMVCnew.webInfrastructure;
 using WebMVCnew.webModels;
 using WebMVCnew.webModels.CartModels;
+using WebMVCnew.webModels.EventOrderModels;
+//using static WebMVCnew.webInfrastructure.APIUrlPaths;
 
 namespace WebMVCnew.Services
 {
@@ -84,5 +86,27 @@ namespace WebMVCnew.Services
 
             return cart;
         }
+        public EventOrder MapCartToOrder(Cart cart)
+        {
+            var order = new EventOrder();
+            order.OrderTotal = 0;
+
+            cart.Items.ForEach(x =>
+            {
+                order.OrderItems.Add(new EventOrderItem()
+                {
+                    ProductId = int.Parse(x.ProductId),
+
+                    PictureUrl = x.PictureUrl,
+                    ProductName = x.ProductName,
+                    Units = x.Quantity,
+                    UnitPrice = x.UnitPrice
+                });
+                order.OrderTotal += (x.Quantity * x.UnitPrice);
+            });
+
+            return order;
+        }
+
     }
 }

@@ -32,7 +32,7 @@ namespace WebMVCnew.controller
         {
             if (action == "[ Checkout ]")
             {
-                return RedirectToAction("Create", "Order");
+                return RedirectToAction("Create", "EventOrders");
             }
 
 
