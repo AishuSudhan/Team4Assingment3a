@@ -31,7 +31,7 @@ services:
       ConnectionString: "Data Source=tokensqlserver;Initial Catalog=TokenServiceDb;User ID=sa;Password=Eventcatalog(2$);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
       MvcClient: http://localhost:7080
     ports:
-      - "5020:80"
+      - "5021:80"
     container_name: eventstokenapi
     networks:
       - frontend
@@ -45,7 +45,7 @@ services:
       context: .\CartAPI
       dockerfile: Dockerfile
     environment:
-      IdentityUrl: http://10.0.0.171:5020
+      IdentityUrl: http://10.0.0.171:5021
       ConnectionString: basket.data
     ports:
       - "7022:80"
@@ -57,7 +57,23 @@ services:
       - eventstokenserver
       - basket.data
 
-
+  order:
+    image: events/orderapi
+    build: 
+      context: .\OrderApi
+      dockerfile: Dockerfile
+    environment:
+      IdentityUrl: http://10.0.0.171:5021
+      ConnectionString: "Data Source=ordersqlserver;Initial Catalog=OrdersDb;User ID=sa;Password=Eventcatalog(2$);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
+    ports:
+      - "7030:80"
+    container_name: eventsorderapi
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - eventstokenserver
+      - ordersqlserver
      
   webmvcnew:
     image: events/webmvcnew
@@ -67,9 +83,12 @@ services:
     environment: 
       ASPNETCORE_ENVIRONMENT: Development
       EventCatalogUrl: http://eventcatalog
-      IdentityUrl: http://10.0.0.171:5020
+      IdentityUrl: http://10.0.0.171:5021
       CallBackUrl: http://localhost:7080
       CartUrl: http://cart
+      OrderUrl: http://order
+      StripePublicKey: pk_test_51MX8PwHcxUBIhbJWwAm3pQrXPmaA36sgojBgQHfLZCJMkvaqvFVOgVOonVx5leGjf7QoDsaIn7u8xUyKSClNSs7A00FbSrV1yo
+      StripePrivateKey: sk_test_51MX8PwHcxUBIhbJW0YgLbk9PGWmO4CPFpuKZc4UYyqaZb5RMDbVMQrVnVpqv5dpNiBqIzhixHQxq1THEWolanR3a00YOZLPrsW
     ports:
       - "7080:80"
     container_name: eventsticketsshop
@@ -79,6 +98,7 @@ services:
       - eventcatalog
       - eventstokenserver
       - cart
+      - order
      
   
 
@@ -106,6 +126,17 @@ services:
     networks:
       - backend
 
+  ordersqlserver:
+    image: "mcr.microsoft.com/mssql/server:latest"
+    environment:
+       ACCEPT_EULA: Y
+       MSSQL_SA_PASSWORD: Eventcatalog(2$)
+       SA_PASSWORD: Eventcatalog(2$)
+    ports:
+      - "1460:1433"
+    container_name: eventsordersqlserver
+    networks:
+      - backend
 
   basket.data:
     image: redis
