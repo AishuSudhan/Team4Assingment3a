@@ -15,7 +15,7 @@ namespace OrderAPI.Models
 
         public int Units { get; set; }
         public int ProductId { get; private set; }
-        public virtual EventOrder Order { get; set; }
+       // public virtual EventOrder Order { get; set; }
         public int OrderId { get; set; }
 
         public EventOrderItem(int productId, string productName, decimal unitPrice, string pictureUrl, int units = 1)

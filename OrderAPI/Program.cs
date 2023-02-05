@@ -1,7 +1,9 @@
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OrderAPI.Data;
+using RabbitMQ.Client;
 using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,7 +36,23 @@ builder.Services.AddAuthentication(options =>
     };
     options.Audience = "order";
 });
+builder.Services.AddMassTransit(cfg =>
+{
+    cfg.AddBus(provider =>
+    {
+        return Bus.Factory.CreateUsingRabbitMq(rmq =>
+        {
+            rmq.Host(new Uri("rabbitmq://rabbitmq"), "/", h =>
+            {
+                h.Username("guest");
+                h.Password("guest");
+            });
+            rmq.ExchangeType = ExchangeType.Fanout;
+            MessageDataDefaults.ExtraTimeToLive = TimeSpan.FromDays(1);
+        });
 
+    });
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -44,6 +44,12 @@ services:
     build:
       context: .\CartAPI
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options: {
+        max-size: "200k",
+        max-file: "10"
+      }
     environment:
       IdentityUrl: http://192.168.1.15:5020
       ConnectionString: basket.data
@@ -56,11 +62,19 @@ services:
     depends_on:
       - eventstokenserver
       - basket.data
+      - rabbitmq
+
   order:
     image: events/orderapi
     build:
       context: .\OrderAPI
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options: {
+        max-size: "200k",
+        max-file: "10"
+      }
     environment:
       IdentityUrl: http://192.168.1.15:5020
       ConnectionString: "Data Source=ordersqlserver;Initial Catalog=EventorderDb;User ID=sa;Password=Eventcatalog(2$);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
@@ -73,6 +87,7 @@ services:
     depends_on:
       - eventstokenserver
       - ordersqlserver
+      - rabbitmq
 
 
   webmvcnew:
@@ -80,6 +95,12 @@ services:
     build:
       context: .\WebMVCnew
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options: {
+        max-size: "200k",
+        max-file: "10"
+      }
     environment: 
       ASPNETCORE_ENVIRONMENT: Development
       EventCatalogUrl: http://eventcatalog
@@ -145,3 +166,14 @@ services:
     container_name: eventsordersqlserver
     networks:
       - backend
+
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq1
+    hostname: myrabbitmq
+    ports:
+      - "15670:15670"
+      - "5670:5670"
+      - "5640:5640"
+    networks:
+      - backend 
