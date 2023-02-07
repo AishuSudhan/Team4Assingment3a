@@ -1,4 +1,6 @@
 using CartAPI.Data;
+using CartAPI.Messaging.Consumers;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using StackExchange.Redis;
@@ -40,6 +42,28 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false
     };
     options.Audience = "basket";
+});
+
+builder.Services.AddMassTransit(cfg =>
+{
+    cfg.AddConsumer<OrderCompletedEventConsumer>();
+    cfg.AddBus(provider =>
+    {
+        return Bus.Factory.CreateUsingRabbitMq(rmq =>
+        {
+            rmq.Host(new Uri("rabbitmq://rabbitmq"), "/", h =>
+            {
+                h.Username("guest");
+                h.Password("guest");
+            });
+            rmq.ReceiveEndpoint("JewelscartOct2022", e =>
+            {
+                e.ConfigureConsumer<OrderCompletedEventConsumer>(provider);
+
+            });
+        });
+
+    });
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

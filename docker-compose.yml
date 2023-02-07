@@ -44,6 +44,12 @@ services:
     build:
       context: .\CartAPI
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options: {
+        max-size: "200k",
+        max-file: "10"
+      }    
     environment:
       IdentityUrl: http://10.0.0.171:5021
       ConnectionString: basket.data
@@ -56,12 +62,19 @@ services:
     depends_on:
       - eventstokenserver
       - basket.data
+      - rabbitmq
 
   order:
     image: events/orderapi
     build: 
       context: .\OrderApi
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options: {
+        max-size: "200k",
+        max-file: "10"
+      }
     environment:
       IdentityUrl: http://10.0.0.171:5021
       ConnectionString: "Data Source=ordersqlserver;Initial Catalog=OrdersDb;User ID=sa;Password=Eventcatalog(2$);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
@@ -74,12 +87,19 @@ services:
     depends_on:
       - eventstokenserver
       - ordersqlserver
+      - rabbitmq
      
   webmvcnew:
     image: events/webmvcnew
     build:
       context: .\WebMVCnew
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options: {
+        max-size: "200k",
+        max-file: "10"
+      }
     environment: 
       ASPNETCORE_ENVIRONMENT: Development
       EventCatalogUrl: http://eventcatalog
@@ -125,7 +145,6 @@ services:
     container_name: eventstokensqlserver
     networks:
       - backend
-
   ordersqlserver:
     image: "mcr.microsoft.com/mssql/server:latest"
     environment:
@@ -145,3 +164,17 @@ services:
     container_name: baskettdata
     networks:
       - backend
+
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    hostname: myrabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+      - "5671:5671"
+    networks:
+      - backend
+  
+
+   
